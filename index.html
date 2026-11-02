@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>พักไหนดี เกาหลี</title>
+<meta name="description" content="หาที่พักในเกาหลี เลือกวัน ผู้ใหญ่/เด็ก งบ ย่าน และรีวิว แล้วค้นในเว็บจองพร้อมตัวกรอง">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1C4A57">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="พักไหนดี">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Gowun+Batang:wght@400;700&display=swap">
+<style>
+/* Layout: celadon-tinted form column + sticky "ready to book" panel; area cards carry real subway line colors */
+:root{
+  --bg:#F2F5F4; --surface:#FFFFFF; --ink:#16252B; --muted:#5A6B70; --line:#D5E0DC;
+  --celadon:#5F9C8A; --celadon-soft:#E2EEEA; --accent:#1C4A57; --cta:#D2582A; --cta-ink:#FFFFFF;
+  --good:#2E7D5B; --warn:#9A6A12;
+  --f-display:"Bai Jamjuree", "IBM Plex Sans Thai", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-ko:"Gowun Batang", "Apple SD Gothic Neo", "Malgun Gothic", serif;
+  --r:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1517; --surface:#152024; --ink:#E3ECE9; --muted:#93A6A4; --line:#26373B;
+    --celadon:#7DBCA9; --celadon-soft:#1B2D2D; --accent:#A3D6C7; --cta:#EE7C47; --cta-ink:#1B0E07;
+    --good:#6FCF9F; --warn:#E3B45A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1517; --surface:#152024; --ink:#E3ECE9; --muted:#93A6A4; --line:#26373B;
+  --celadon:#7DBCA9; --celadon-soft:#1B2D2D; --accent:#A3D6C7; --cta:#EE7C47; --cta-ink:#1B0E07;
+  --good:#6FCF9F; --warn:#E3B45A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 48px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 .ko{font-family:var(--f-ko);font-weight:700;color:var(--celadon);font-size:.55em;margin-left:.4em;letter-spacing:0}
+.lede{color:var(--muted);margin:6px 0 0;max-width:60ch}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+@media (min-width:960px){.layout{grid-template-columns:minmax(0,1fr) 380px}}
+.stack{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.block{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+h2 small{font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--muted)}
+label.lbl{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-bottom:5px}
+input[type=date],input[type=number],input[type=text],select{
+  width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px 11px;min-height:44px}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--celadon);outline-offset:2px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.nights{margin-top:10px;font-size:14px;color:var(--muted)}
+.nights b{color:var(--ink);font-family:var(--f-display);font-size:17px}
+.err{color:var(--cta);font-size:13px;margin-top:6px}
+.guests{display:flex;flex-direction:column;gap:12px}
+.gline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.gline .t{font-weight:500}.gline .s{font-size:12px;color:var(--muted);display:block}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.step button:disabled{opacity:.35;cursor:default}
+.step output{min-width:28px;text-align:center;font-family:var(--f-display);font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+.ages{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:2px}
+.ages label{font-size:12px;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;cursor:pointer;min-height:38px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip .sub{opacity:.75;font-size:12px;margin-left:4px}
+.price-range{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:8px}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.tab{border:0;background:none;font:inherit;color:var(--muted);padding:8px 12px 10px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-5px}
+.tab .ko{font-family:var(--f-ko);font-size:13px;margin-left:5px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--celadon);font-weight:600}
+.styles{margin-bottom:12px}
+.areas{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.area{text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-width:0}
+.area:hover{border-color:var(--celadon)}
+.area[aria-pressed="true"]{background:var(--celadon-soft);border-color:var(--celadon);box-shadow:inset 0 0 0 1px var(--celadon)}
+.area.dim{opacity:.45}
+.area .nm{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.area .th{font-family:var(--f-display);font-weight:600;font-size:16px}
+.area .ko{font-family:var(--f-ko);font-size:14px;color:var(--muted)}
+.area .bl{font-size:13px;color:var(--muted);line-height:1.45}
+.lines{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.ln{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;color:var(--muted)}
+.ln i{display:inline-grid;place-items:center;min-width:19px;height:19px;padding:0 4px;border-radius:10px;color:#fff;font-style:normal;font-weight:700;font-size:10.5px}
+.pr{font-size:12px;letter-spacing:.06em;color:var(--warn);font-weight:600}
+.pr span{color:var(--line)}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:11.5px;padding:1px 7px;border-radius:6px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.tag.hit{border-color:var(--celadon);color:var(--ink)}
+.custom{margin-top:14px;display:grid;gap:5px}
+aside{min-width:0}
+.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:flex;flex-direction:column;gap:14px}
+.sum{background:var(--accent);color:var(--surface);border-radius:var(--r);padding:18px}
+.sum .where{font-family:var(--f-display);font-weight:700;font-size:22px;line-height:1.2}
+.sum .where .ko{font-family:var(--f-ko);font-weight:400;font-size:15px;opacity:.8;margin-left:6px}
+.sum dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:12px 0 0;font-size:14px}
+.sum dt{opacity:.75}.sum dd{margin:0;font-weight:500;font-variant-numeric:tabular-nums}
+.sum .maps{display:flex;gap:12px;margin-top:12px;font-size:13px}
+.sum .maps a{color:var(--surface);opacity:.9}
+.sites{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:6px 0}
+.sites h3{font-family:var(--f-display);font-size:15px;font-weight:600;margin:10px 16px 4px}
+.site{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line)}
+.site:first-of-type{border-top:0}
+.site .nm{font-weight:600}
+.site .ap{display:flex;flex-wrap:wrap;gap:4px;grid-column:1/-1}
+.ok,.no{font-size:11.5px;padding:1px 7px;border-radius:6px}
+.ok{color:var(--good);background:color-mix(in srgb,var(--good) 12%,transparent)}
+.no{color:var(--muted);background:var(--bg)}
+a.go{display:inline-flex;align-items:center;gap:6px;background:var(--cta);color:var(--cta-ink);text-decoration:none;font-weight:600;border-radius:9px;padding:9px 14px;font-size:14px;white-space:nowrap;min-height:40px}
+a.go.off{pointer-events:none;opacity:.4}
+.foot{font-size:12.5px;color:var(--muted);padding:0 2px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn2{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:8px 12px;cursor:pointer;min-height:38px}
+.recent{display:flex;flex-wrap:wrap;gap:6px}
+.recent button{font:inherit;font-size:12.5px;border:1px dashed var(--line);background:none;color:var(--ink);border-radius:8px;padding:5px 9px;cursor:pointer;text-align:left}
+.installBtn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:15px;background:var(--cta);color:var(--cta-ink);border:0;border-radius:999px;padding:10px 18px;min-height:44px;cursor:pointer}
+.installBtn svg{width:18px;height:18px}
+.installed{font-size:13px;color:var(--good);font-weight:600}
+.ihelp{background:var(--celadon-soft);border:1px solid var(--celadon);border-radius:var(--r);padding:14px 16px;margin:-8px 0 20px;font-size:14px}
+.ihelp b{font-family:var(--f-display)}
+.ihelp ol{margin:8px 0 0;padding-left:20px;display:grid;gap:4px}
+.ihelp .x{float:right;font:inherit;background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:2px 4px}
+@media (prefers-reduced-motion:no-preference){.area,.chip,a.go{transition:background .15s,border-color .15s,opacity .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>พักไหนดี เกาหลี<span class="ko">어디서 잘까?</span></h1>
+      <p class="lede">เลือกวัน จำนวนคน งบ ย่าน และระดับรีวิว แล้วกดค้นในเว็บจองที่ใส่ตัวกรองให้แล้ว</p>
+    </div>
+    <div id="installBox">
+      <button type="button" class="installBtn" id="installBtn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+        ติดตั้งแอป
+      </button>
+      <span class="installed" id="installedMsg" hidden>✓ ติดตั้งแล้ว</span>
+    </div>
+  </header>
+  <div class="ihelp" id="installHelp" hidden role="dialog" aria-labelledby="ihTitle">
+    <button type="button" class="x" id="ihClose" aria-label="ปิด">×</button>
+    <b id="ihTitle">ติดตั้งลงหน้าจอโฮม</b>
+    <div id="ihBody"></div>
+  </div>
+
+  <div class="layout">
+    <div class="stack">
+      <section class="block" aria-labelledby="h-dates">
+        <h2 id="h-dates">วันเข้าพัก</h2>
+        <div class="row2">
+          <div><label class="lbl" for="checkin">เช็กอิน</label><input type="date" id="checkin"></div>
+          <div><label class="lbl" for="checkout">เช็กเอาต์</label><input type="date" id="checkout"></div>
+        </div>
+        <div class="nights" id="nights"></div>
+        <div class="err" id="dateErr" hidden>วันเช็กเอาต์ต้องอยู่หลังวันเช็กอิน</div>
+      </section>
+
+      <section class="block" aria-labelledby="h-guests">
+        <h2 id="h-guests">ผู้เข้าพัก</h2>
+        <div class="guests">
+          <div class="gline"><div><span class="t">ผู้ใหญ่</span><span class="s">อายุ 18 ปีขึ้นไป</span></div>
+            <div class="step"><button type="button" id="adMinus" aria-label="ลดผู้ใหญ่">−</button><output id="adOut">2</output><button type="button" id="adPlus" aria-label="เพิ่มผู้ใหญ่">+</button></div></div>
+          <div class="gline"><div><span class="t">เด็ก</span><span class="s">0–17 ปี · ระบุอายุเพื่อราคาที่ถูกต้อง</span></div>
+            <div class="step"><button type="button" id="chMinus" aria-label="ลดเด็ก">−</button><output id="chOut">0</output><button type="button" id="chPlus" aria-label="เพิ่มเด็ก">+</button></div></div>
+          <div class="ages" id="ages"></div>
+          <div class="gline"><div><span class="t">ห้อง</span></div>
+            <div class="step"><button type="button" id="rmMinus" aria-label="ลดห้อง">−</button><output id="rmOut">1</output><button type="button" id="rmPlus" aria-label="เพิ่มห้อง">+</button></div></div>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="h-price">
+        <h2 id="h-price">ราคาต่อคืน <small>ทุกราคา หรือกำหนดช่วงเอง</small></h2>
+        <div class="seg" id="pricePresets"></div>
+        <div class="price-range" id="priceRange">
+          <div><label class="lbl" for="pmin">ต่ำสุด</label><input type="number" id="pmin" min="0" step="100" inputmode="numeric"></div>
+          <div><label class="lbl" for="pmax">สูงสุด (เว้นว่าง = ไม่จำกัด)</label><input type="number" id="pmax" min="0" step="100" inputmode="numeric"></div>
+        </div>
+        <div class="seg" style="margin-top:12px" role="group" aria-label="สกุลเงิน">
+          <button type="button" class="chip" data-cur="THB">บาท ฿</button>
+          <button type="button" class="chip" data-cur="KRW">วอน ₩</button>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="h-rev">
+        <h2 id="h-rev">รีวิว <small>คะแนนจากผู้เข้าพักจริง (เต็ม 10)</small></h2>
+        <div class="seg" id="reviewSeg">
+          <button type="button" class="chip" data-rev="0">ทุกระดับ</button>
+          <button type="button" class="chip" data-rev="7">7+<span class="sub">ดี</span></button>
+          <button type="button" class="chip" data-rev="8">8+<span class="sub">ดีมาก</span></button>
+          <button type="button" class="chip" data-rev="9">9+<span class="sub">ยอดเยี่ยม</span></button>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="h-area">
+        <h2 id="h-area">ย่านที่พัก</h2>
+        <div class="tabs" role="tablist" id="cityTabs"></div>
+        <div class="seg styles" id="styleChips" aria-label="สไตล์ทริป (กรองย่านที่เหมาะ)"></div>
+        <div class="areas" id="areas"></div>
+        <div class="custom">
+          <label class="lbl" for="custom">ระบุย่านหรือสถานที่เอง (ไม่บังคับ)</label>
+          <input type="text" id="custom" placeholder="เช่น Lotte World, Bukchon, Haeundae Beach">
+          <div class="hint">ถ้ากรอกช่องนี้ ระบบจะค้นจากสถานที่นี้แทนย่านที่เลือก (ในเมืองเดียวกัน)</div>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <div class="panel">
+        <div class="sum" id="sum"></div>
+        <div class="sites" id="sites"></div>
+        <div class="tools">
+          <button type="button" class="btn2" id="copyBtn">คัดลอกสรุปทริป</button>
+          <button type="button" class="btn2" id="saveBtn">บันทึกการค้นหานี้</button>
+        </div>
+        <div class="recent" id="recent"></div>
+        <p class="foot">ราคาและรีวิวจริงแสดงในเว็บจองแต่ละเว็บ บางเว็บไม่รับตัวกรองผ่านลิงก์ ช่องสีเทาคือส่วนที่ต้องตั้งเองอีกครั้งในเว็บนั้น ระดับราคา ₩ ของย่านเป็นภาพรวมโดยประมาณ</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+const LINE = {
+  s1:['1','#0052A4'], s2:['2','#00A84D'], s3:['3','#EF7C1C'], s4:['4','#00A5DE'], s5:['5','#996CAC'],
+  s6:['6','#CD7C2F'], s8:['8','#E6186C'], arex:['A','#0090D2'], sbd:['S','#D4003B'],
+  b1:['1','#F06A00'], b2:['2','#81BF48'], i1:['1','#7CA8D5']
+};
+const CITIES = [
+  {id:'seoul', th:'โซล', ko:'서울', en:'Seoul', agoda:14690},
+  {id:'busan', th:'ปูซาน', ko:'부산', en:'Busan', agoda:17172},
+  {id:'jeju', th:'เชจู', ko:'제주', en:'Jeju', agoda:16901},
+  {id:'incheon', th:'อินชอน', ko:'인천', en:'Incheon'},
+  {id:'gyeongju', th:'คย็องจู', ko:'경주', en:'Gyeongju'}
+];
+const STYLES = [
+  ['first','มาครั้งแรก'],['shop','ช้อปปิ้ง'],['night','ชีวิตกลางคืน'],['family','ครอบครัว'],
+  ['culture','วัฒนธรรม'],['cafe','คาเฟ่'],['sea','ทะเล'],['budget','ประหยัด'],['transit','เดินทางสะดวก'],['quiet','เงียบสงบ']
+];
+const SN = Object.fromEntries(STYLES);
+const AREAS = [
+  {id:'myeongdong',c:'seoul',th:'เมียงดง',ko:'명동',en:'Myeongdong',p:2,t:['first','shop','transit'],l:[['s4','Myeongdong'],['s2','Euljiro 1-ga']],b:'ย่านช้อปปิ้งและสตรีทฟู้ด ใกล้สถานีโซล เหมาะกับคนมาครั้งแรก'},
+  {id:'hongdae',c:'seoul',th:'ฮงแด',ko:'홍대',en:'Hongdae',p:1,t:['night','cafe','budget','transit'],l:[['s2','Hongik Univ.'],['arex','Hongik Univ.']],b:'ย่านวัยรุ่น ดนตรีสด คาเฟ่ มีรถไฟ AREX ตรงจากสนามบินอินชอน'},
+  {id:'gangnam',c:'seoul',th:'คังนัม',ko:'강남',en:'Gangnam',p:3,t:['shop','night'],l:[['s2','Gangnam'],['sbd','Gangnam']],b:'ย่านธุรกิจและแบรนด์หรู โรงแรมระดับบนเยอะ'},
+  {id:'jongno',c:'seoul',th:'จงโน · อินซาดง',ko:'종로·인사동',en:'Insadong, Jongno',p:2,t:['culture','quiet','first'],l:[['s3','Anguk'],['s1','Jonggak']],b:'ใกล้พระราชวังเคียงบกกุงและหมู่บ้านบุกชอน มีที่พักแบบบ้านฮันอก'},
+  {id:'dongdaemun',c:'seoul',th:'ทงแดมุน',ko:'동대문',en:'Dongdaemun',p:1,t:['shop','budget','night'],l:[['s1','Dongdaemun'],['s4','Dongdaemun'],['s2','DDP']],b:'ตลาดเสื้อผ้าเปิดถึงดึก ที่พักราคาย่อมเยา'},
+  {id:'itaewon',c:'seoul',th:'อิแทวอน',ko:'이태원',en:'Itaewon',p:2,t:['night'],l:[['s6','Itaewon']],b:'ร้านอาหารนานาชาติ บาร์ บรรยากาศหลากวัฒนธรรม'},
+  {id:'seongsu',c:'seoul',th:'ซองซู',ko:'성수',en:'Seongsu',p:2,t:['cafe','shop'],l:[['s2','Seongsu']],b:'คาเฟ่ดีไซน์และป๊อปอัปสโตร์ ย่านฮิตของคนท้องถิ่น'},
+  {id:'jamsil',c:'seoul',th:'จัมชิล',ko:'잠실',en:'Jamsil',p:3,t:['family','shop'],l:[['s2','Jamsil'],['s8','Jamsil']],b:'ล็อตเต้เวิลด์ ทะเลสาบซอกชน เหมาะกับครอบครัวมีเด็ก'},
+  {id:'seoulstn',c:'seoul',th:'สถานีโซล',ko:'서울역',en:'Seoul Station',p:2,t:['transit','first'],l:[['s1','Seoul Stn'],['s4','Seoul Stn'],['arex','Seoul Stn']],b:'ต่อ KTX ไปปูซาน/คย็องจูได้ทันที AREX ตรงจากสนามบิน'},
+  {id:'haeundae',c:'busan',th:'แฮอุนแด',ko:'해운대',en:'Haeundae',p:3,t:['sea','family'],l:[['b2','Haeundae']],b:'ชายหาดดังของปูซาน โรงแรมวิวทะเลเยอะ'},
+  {id:'gwangalli',c:'busan',th:'ควังอัลลี',ko:'광안리',en:'Gwangalli',p:2,t:['sea','night','cafe'],l:[['b2','Gwangan']],b:'วิวสะพานควังอันตอนกลางคืน ร้านอาหารริมหาด'},
+  {id:'seomyeon',c:'busan',th:'ซอมยอน',ko:'서면',en:'Seomyeon',p:1,t:['transit','night','shop','budget'],l:[['b1','Seomyeon'],['b2','Seomyeon']],b:'ใจกลางเมือง ชุมทางรถไฟใต้ดินสาย 1 และ 2'},
+  {id:'nampo',c:'busan',th:'นัมโพ · ชากัลชี',ko:'남포',en:'Nampo-dong',p:1,t:['culture','budget'],l:[['b1','Nampo'],['b1','Jagalchi']],b:'ตลาดปลาชากัลชี ตลาดกุกเจ ไปหมู่บ้านคัมชอนได้ใกล้'},
+  {id:'jejucity',c:'jeju',th:'เมืองเชจู (โนฮยอง)',ko:'제주시 노형',en:'Nohyeong-dong, Jeju City',p:2,t:['transit','shop','budget'],l:[],b:'ใกล้สนามบินเชจู ร้านอาหารและห้างเยอะ เหมาะคืนแรก/คืนสุดท้าย'},
+  {id:'seogwipo',c:'jeju',th:'ซอกวิโพ',ko:'서귀포',en:'Seogwipo',p:2,t:['sea','quiet','family'],l:[],b:'ฝั่งใต้ของเกาะ ใกล้น้ำตกและหน้าผาริมทะเล'},
+  {id:'aewol',c:'jeju',th:'แอวอล',ko:'애월',en:'Aewol',p:2,t:['cafe','sea','quiet'],l:[],b:'คาเฟ่ริมทะเลฝั่งตะวันตก เหมาะกับคนเช่ารถ'},
+  {id:'yeongjong',c:'incheon',th:'ยองจงโด (สนามบิน)',ko:'영종도',en:'Yeongjongdo, Incheon Airport',p:2,t:['transit'],l:[['arex','Airport T1']],b:'เหมาะกับไฟลต์ดึกหรือเช้ามืด ไม่ต้องเข้าเมือง'},
+  {id:'songdo',c:'incheon',th:'ซงโด',ko:'송도',en:'Songdo',p:2,t:['quiet','family'],l:[['i1','Central Park']],b:'เมืองใหม่ สวนเซ็นทรัลพาร์ก โรงแรมทันสมัย'},
+  {id:'hwangni',c:'gyeongju',th:'ฮวังนีดันกิล',ko:'황리단길',en:'Hwangnidan-gil, Gyeongju',p:2,t:['culture','cafe','quiet'],l:[],b:'ถนนบ้านเก่าสไตล์ฮันอก เดินถึงสุสานหลวงยุคชิลลา'},
+  {id:'bomun',c:'gyeongju',th:'ทะเลสาบโบมุน',ko:'보문관광단지',en:'Bomun Lake Resort, Gyeongju',p:3,t:['family','quiet'],l:[],b:'รีสอร์ตริมทะเลสาบ เหมาะกับครอบครัว'}
+];
+const NOSUB = {jeju:'ไม่มีรถไฟใต้ดิน · แนะนำเช่ารถ', gyeongju:'ไม่มีรถไฟใต้ดิน · KTX ลงสถานีชินคย็องจู'};
+const PRESETS = {
+  THB:[[0,1500,'ไม่เกิน ฿1,500'],[1500,3000,'฿1,500–3,000'],[3000,6000,'฿3,000–6,000'],[6000,null,'฿6,000 ขึ้นไป']],
+  KRW:[[0,60000,'ไม่เกิน ₩60,000'],[60000,120000,'₩60,000–120,000'],[120000,250000,'₩120,000–250,000'],[250000,null,'₩250,000 ขึ้นไป']]
+};
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,'0');
+const iso = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const today = new Date(); today.setHours(0,0,0,0);
+const ci0 = new Date(today); ci0.setDate(ci0.getDate()+28);
+const co0 = new Date(ci0); co0.setDate(co0.getDate()+4);
+
+const S = {checkin:iso(ci0), checkout:iso(co0), adults:2, children:[6], rooms:1,
+  anyPrice:true, min:1500, max:3000, cur:'THB', review:8, city:'seoul', area:'myeongdong', custom:'', styles:new Set()};
+
+const fmt = n => n.toLocaleString('th-TH');
+const curSym = () => S.cur==='THB'?'฿':'₩';
+function nights(){ const a=new Date(S.checkin), b=new Date(S.checkout); return Math.round((b-a)/86400000); }
+function thDate(s){ const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('th-TH',{day:'numeric',month:'short',weekday:'short'}); }
+function curCity(){ return CITIES.find(c=>c.id===S.city); }
+function curArea(){ return AREAS.find(a=>a.id===S.area && a.c===S.city) || AREAS.find(a=>a.c===S.city); }
+function query(){ const c=curCity(), a=curArea(); const place = S.custom.trim() || a.en; return place.includes(c.en)?place:place+', '+c.en; }
+
+/* ---------- dates ---------- */
+$('checkin').min = iso(today);
+function syncDates(){ $('checkin').value=S.checkin; $('checkout').value=S.checkout; $('checkout').min=S.checkin; }
+$('checkin').addEventListener('change',e=>{ S.checkin=e.target.value; if(nights()<1){ const d=new Date(S.checkin+'T00:00:00'); d.setDate(d.getDate()+1); S.checkout=iso(d);} syncDates(); update(); });
+$('checkout').addEventListener('change',e=>{ S.checkout=e.target.value; update(); });
+
+/* ---------- guests ---------- */
+function renderGuests(){
+  $('adOut').value=S.adults; $('chOut').value=S.children.length; $('rmOut').value=S.rooms;
+  $('adMinus').disabled=S.adults<=1; $('adPlus').disabled=S.adults>=16;
+  $('chMinus').disabled=S.children.length<=0; $('chPlus').disabled=S.children.length>=8;
+  $('rmMinus').disabled=S.rooms<=1; $('rmPlus').disabled=S.rooms>=Math.min(8,S.adults);
+  const box=$('ages'); box.innerHTML='';
+  S.children.forEach((age,i)=>{
+    const w=document.createElement('div');
+    let opts=''; for(let a=0;a<=17;a++) opts+=`<option value="${a}"${a===age?' selected':''}>${a===0?'ต่ำกว่า 1 ปี':a+' ปี'}</option>`;
+    w.innerHTML=`<label for="child-age-${i}">อายุเด็กคนที่ ${i+1}</label><select id="child-age-${i}">${opts}</select>`;
+    w.querySelector('select').addEventListener('change',e=>{ S.children[i]=+e.target.value; update(); });
+    box.appendChild(w);
+  });
+}
+$('adMinus').onclick=()=>{S.adults--; if(S.rooms>S.adults)S.rooms=S.adults; renderGuests(); update();};
+$('adPlus').onclick=()=>{S.adults++; renderGuests(); update();};
+$('chMinus').onclick=()=>{S.children.pop(); renderGuests(); update();};
+$('chPlus').onclick=()=>{S.children.push(6); renderGuests(); update();};
+$('rmMinus').onclick=()=>{S.rooms--; renderGuests(); update();};
+$('rmPlus').onclick=()=>{S.rooms++; renderGuests(); update();};
+
+/* ---------- price ---------- */
+function renderPrice(){
+  const box=$('pricePresets'); box.innerHTML='';
+  const all=document.createElement('button'); all.type='button'; all.className='chip'; all.textContent='ทุกราคา';
+  all.setAttribute('aria-pressed',S.anyPrice); all.onclick=()=>{S.anyPrice=true; renderPrice(); update();}; box.appendChild(all);
+  PRESETS[S.cur].forEach(([mn,mx,lab])=>{
+    const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=lab;
+    b.setAttribute('aria-pressed', !S.anyPrice && S.min===mn && S.max===mx);
+    b.onclick=()=>{S.anyPrice=false; S.min=mn; S.max=mx; renderPrice(); update();};
+    box.appendChild(b);
+  });
+  $('priceRange').hidden=S.anyPrice;
+  $('pmin').value=S.min||''; $('pmax').value=S.max==null?'':S.max;
+  document.querySelectorAll('[data-cur]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.cur===S.cur));
+}
+$('pmin').addEventListener('input',e=>{S.min=Math.max(0,+e.target.value||0); S.anyPrice=false; renderPriceChipsOnly(); update();});
+$('pmax').addEventListener('input',e=>{S.max=e.target.value===''?null:Math.max(0,+e.target.value); S.anyPrice=false; renderPriceChipsOnly(); update();});
+function renderPriceChipsOnly(){ const btns=$('pricePresets').querySelectorAll('.chip'); btns[0].setAttribute('aria-pressed',S.anyPrice);
+  PRESETS[S.cur].forEach(([mn,mx],i)=>btns[i+1].setAttribute('aria-pressed',!S.anyPrice&&S.min===mn&&S.max===mx)); }
+document.querySelectorAll('[data-cur]').forEach(b=>b.onclick=()=>{ if(S.cur===b.dataset.cur)return; S.cur=b.dataset.cur; const p=PRESETS[S.cur][1]; S.min=p[0]; S.max=p[1]; renderPrice(); update(); });
+
+/* ---------- review ---------- */
+function renderReview(){ document.querySelectorAll('[data-rev]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.rev===S.review)); }
+document.querySelectorAll('[data-rev]').forEach(b=>b.onclick=()=>{S.review=+b.dataset.rev; renderReview(); update();});
+
+/* ---------- areas ---------- */
+function renderCities(){
+  const box=$('cityTabs'); box.innerHTML='';
+  CITIES.forEach(c=>{
+    const b=document.createElement('button'); b.type='button'; b.className='tab'; b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',c.id===S.city); b.innerHTML=`${c.th}<span class="ko">${c.ko}</span>`;
+    b.onclick=()=>{ S.city=c.id; S.area=AREAS.find(a=>a.c===c.id).id; renderCities(); renderAreas(); update(); };
+    box.appendChild(b);
+  });
+}
+function renderStyles(){
+  const box=$('styleChips'); box.innerHTML='';
+  STYLES.forEach(([k,lab])=>{
+    const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=lab;
+    b.setAttribute('aria-pressed',S.styles.has(k));
+    b.onclick=()=>{ S.styles.has(k)?S.styles.delete(k):S.styles.add(k); renderStyles(); renderAreas(); };
+    box.appendChild(b);
+  });
+}
+function renderAreas(){
+  const box=$('areas'); box.innerHTML='';
+  let list=AREAS.filter(a=>a.c===S.city);
+  const score=a=>[...S.styles].filter(s=>a.t.includes(s)).length;
+  if(S.styles.size) list=[...list].sort((x,y)=>score(y)-score(x));
+  list.forEach(a=>{
+    const sc=score(a);
+    const b=document.createElement('button'); b.type='button'; b.className='area'+(S.styles.size&&sc===0?' dim':'');
+    b.setAttribute('aria-pressed',a.id===S.area);
+    const lines=a.l.length? a.l.map(([k,st])=>`<span class="ln"><i style="background:${LINE[k][1]}">${LINE[k][0]}</i>${st}</span>`).join('')
+      : `<span class="ln">${NOSUB[a.c]||''}</span>`;
+    b.innerHTML=`<span class="nm"><span class="th">${a.th}</span><span class="ko">${a.ko}</span></span>
+      <span class="lines">${lines}</span>
+      <span class="bl">${a.b}</span>
+      <span class="pr" title="ระดับราคาโดยทั่วไป">${'₩'.repeat(a.p)}<span>${'₩'.repeat(3-a.p)}</span></span>
+      <span class="tags">${a.t.map(t=>`<span class="tag${S.styles.has(t)?' hit':''}">${SN[t]}</span>`).join('')}</span>`;
+    b.onclick=()=>{ S.area=a.id; S.custom=''; $('custom').value=''; renderAreas(); update(); };
+    box.appendChild(b);
+  });
+}
+$('custom').addEventListener('input',e=>{S.custom=e.target.value; update();});
+
+/* ---------- links ---------- */
+function links(){
+  const q=query(), n=nights(), ages=S.children, c=curCity();
+  const kids=ages.length, cur=S.cur;
+  const hasPrice=!S.anyPrice;
+  // Booking.com
+  const bp=new URLSearchParams({ss:q,checkin:S.checkin,checkout:S.checkout,group_adults:S.adults,group_children:kids,no_rooms:S.rooms,selected_currency:cur,lang:'th'});
+  ages.forEach(a=>bp.append('age',a));
+  const nf=[]; if(S.review) nf.push('review_score='+S.review*10);
+  if(hasPrice) nf.push(`price=${cur}-${S.min||'min'}-${S.max==null?'max':S.max}-1`);
+  if(nf.length) bp.set('nflt',nf.join(';'));
+  // Agoda
+  const ap=new URLSearchParams({checkIn:S.checkin,los:n,rooms:S.rooms,adults:S.adults,children:kids,priceCur:cur,textToSearch:q,locale:'th-th'});
+  if(kids) ap.set('childages',ages.join(','));
+  if(c.agoda && !S.custom.trim() ) ap.set('city',c.agoda);
+  // Expedia
+  const per=Math.floor(S.adults/S.rooms), extra=S.adults%S.rooms;
+  const adultRooms=Array.from({length:S.rooms},(_,i)=>per+(i<extra?1:0)).join(',');
+  const ep=new URLSearchParams({destination:q,startDate:S.checkin,endDate:S.checkout,adults:adultRooms});
+  if(kids) ep.set('children',ages.map(a=>'1_'+a).join(','));
+  // Airbnb
+  const infants=ages.filter(a=>a<2).length, teen=ages.filter(a=>a>=13).length, child=kids-infants-teen;
+  const bnb=new URLSearchParams({checkin:S.checkin,checkout:S.checkout,adults:S.adults+teen,children:child,infants:infants,currency:cur});
+  if(hasPrice){ if(S.min) bnb.set('price_min',S.min); if(S.max!=null) bnb.set('price_max',S.max); }
+  if(S.review>=9) bnb.set('guest_favorite','true');
+  // Google
+  const gq=`hotels in ${q}`;
+  return [
+    {nm:'Booking.com',sub:'ตัวกรองครบที่สุด',url:'https://www.booking.com/searchresults.html?'+bp,ap:{d:1,g:1,p:1,r:1}},
+    {nm:'Agoda',sub:'ราคาเอเชียมักดี',url:'https://www.agoda.com/search?'+ap,ap:{d:1,g:1,p:0,r:0}},
+    {nm:'Airbnb',sub:'บ้านพัก อพาร์ตเมนต์',url:'https://www.airbnb.co.th/s/'+encodeURIComponent(q+', South Korea')+'/homes?'+bnb,ap:{d:1,g:1,p:1,r:S.review>=9?1:(S.review?0:1)},rnote:S.review>=9?'Guest favorite':null},
+    {nm:'Expedia',sub:'รวมโรงแรมเครือใหญ่',url:'https://www.expedia.co.th/Hotel-Search?'+ep,ap:{d:1,g:1,p:0,r:0}},
+    {nm:'Google Hotels',sub:'เทียบราคาหลายเว็บ',url:'https://www.google.com/travel/search?hl=th&q='+encodeURIComponent(gq),ap:{d:0,g:0,p:0,r:0}}
+  ];
+}
+
+/* ---------- summary ---------- */
+function summaryText(){
+  const a=curArea(), c=curCity(), n=nights();
+  const kids=S.children.length?` · เด็ก ${S.children.length} (${S.children.map(x=>x===0?'<1':x).join(', ')} ปี)`:'';
+  const price=S.anyPrice?'ทุกราคา':`${curSym()}${fmt(S.min||0)}–${S.max==null?'ไม่จำกัด':curSym()+fmt(S.max)} /คืน`;
+  const rev=S.review?`${S.review}+`:'ทุกระดับ';
+  const place=S.custom.trim()?`${S.custom.trim()} (${c.th})`:`${a.th} ${c.th}`;
+  return `ที่พักเกาหลี: ${place}\n${thDate(S.checkin)} – ${thDate(S.checkout)} (${n} คืน)\nผู้ใหญ่ ${S.adults}${kids} · ${S.rooms} ห้อง\nงบ: ${price} · รีวิว: ${rev}`;
+}
+function update(){
+  const n=nights(), bad=!(n>=1);
+  $('dateErr').hidden=!bad;
+  $('nights').innerHTML=bad?'':`<b>${n}</b> คืน · ${thDate(S.checkin)} → ${thDate(S.checkout)}`;
+  const a=curArea(), c=curCity();
+  const kids=S.children.length?`, เด็ก ${S.children.length}`:'';
+  let budget='ทุกราคา';
+  if(!S.anyPrice){
+    budget=`${curSym()}${fmt(S.min||0)} – ${S.max==null?'ไม่จำกัด':curSym()+fmt(S.max)} /คืน`;
+    if(!bad) budget+=`<br><span style="opacity:.75">ทั้งทริป ≈ ${curSym()}${fmt((S.min||0)*n*S.rooms)} – ${S.max==null?'ไม่จำกัด':curSym()+fmt(S.max*n*S.rooms)}</span>`;
+  }
+  const custom=S.custom.trim();
+  const mapQ=encodeURIComponent(query()+', South Korea');
+  $('sum').innerHTML=`<div class="where">${custom?custom:a.th}<span class="ko">${custom?c.ko:a.ko}</span></div>
+    <div style="opacity:.8;font-size:13px">${c.th}, เกาหลีใต้</div>
+    <dl><dt>วันที่</dt><dd>${bad?'—':`${thDate(S.checkin)} – ${thDate(S.checkout)} · ${n} คืน`}</dd>
+    <dt>ผู้เข้าพัก</dt><dd>ผู้ใหญ่ ${S.adults}${kids} · ${S.rooms} ห้อง</dd>
+    <dt>งบ</dt><dd>${budget}</dd>
+    <dt>รีวิว</dt><dd>${S.review?S.review+'+ จาก 10':'ทุกระดับ'}</dd></dl>
+    <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=${mapQ}" target="_blank" rel="noopener">ดูบน Google Maps ↗</a>
+    <a href="https://map.naver.com/p/search/${encodeURIComponent(custom||a.ko)}" target="_blank" rel="noopener">Naver Map ↗</a></div>`;
+  const tag=(ok,lab)=>`<span class="${ok?'ok':'no'}">${ok?'✓':'ตั้งเอง'} ${lab}</span>`;
+  $('sites').innerHTML='<h3>ค้นหาในเว็บจอง</h3>'+links().map(s=>`
+    <div class="site"><div><div class="nm">${s.nm}</div><div style="font-size:12.5px;color:var(--muted)">${s.sub}</div></div>
+    <a class="go${bad?' off':''}" href="${s.url}" target="_blank" rel="noopener" data-save>ค้นหา ↗</a>
+    <div class="ap">${tag(s.ap.d,'วันที่')}${tag(s.ap.g,'คน')}${S.anyPrice?'':tag(s.ap.p,'ราคา')}${S.review?tag(s.ap.r,s.rnote||'รีวิว'):''}</div></div>`).join('');
+  $('sites').querySelectorAll('[data-save]').forEach(l=>l.addEventListener('click',saveRecent));
+}
+
+/* ---------- copy & recent ---------- */
+$('copyBtn').onclick=async()=>{
+  const t=summaryText(), btn=$('copyBtn');
+  try{ await navigator.clipboard.writeText(t); btn.textContent='คัดลอกแล้ว'; }
+  catch(e){ btn.textContent='คัดลอกไม่ได้ในหน้านี้'; }
+  setTimeout(()=>btn.textContent='คัดลอกสรุปทริป',1800);
+};
+const KEY='korea-stay-recent';
+function loadRecent(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+function snapshot(){ return {checkin:S.checkin,checkout:S.checkout,adults:S.adults,children:[...S.children],rooms:S.rooms,anyPrice:S.anyPrice,min:S.min,max:S.max,cur:S.cur,review:S.review,city:S.city,area:S.area,custom:S.custom}; }
+function saveRecent(){
+  const s=snapshot(); let list=loadRecent().filter(r=>JSON.stringify(r)!==JSON.stringify(s));
+  list.unshift(s); list=list.slice(0,5);
+  try{ localStorage.setItem(KEY,JSON.stringify(list)); }catch(e){}
+  renderRecent();
+}
+$('saveBtn').onclick=()=>{ saveRecent(); $('saveBtn').textContent='บันทึกแล้ว'; setTimeout(()=>$('saveBtn').textContent='บันทึกการค้นหานี้',1500); };
+function renderRecent(){
+  const box=$('recent'), list=loadRecent(); box.innerHTML='';
+  if(!list.length) return;
+  const h=document.createElement('div'); h.style.cssText='width:100%;font-size:12px;color:var(--muted);font-weight:600'; h.textContent='ค้นหาล่าสุด'; box.appendChild(h);
+  list.forEach(r=>{
+    const a=AREAS.find(x=>x.id===r.area), c=CITIES.find(x=>x.id===r.city);
+    const b=document.createElement('button'); b.type='button';
+    b.textContent=`${r.custom||a?.th||''} · ${c?.th||''} · ${r.checkin.slice(5).replace('-','/')} · ${r.adults}+${r.children.length}`;
+    b.onclick=()=>{ Object.assign(S,r,{children:[...r.children]}); $('custom').value=S.custom; renderAll(); };
+    box.appendChild(b);
+  });
+}
+
+function renderAll(){ syncDates(); renderGuests(); renderPrice(); renderReview(); renderCities(); renderStyles(); renderAreas(); renderRecent(); update(); }
+renderAll();
+})();
+</script>
+<script>
+/* ---------- ติดตั้งแอป (PWA) ---------- */
+(function(){
+  const btn=document.getElementById('installBtn'), done=document.getElementById('installedMsg');
+  const help=document.getElementById('installHelp'), body=document.getElementById('ihBody');
+  const ua=navigator.userAgent||'';
+  const isStandalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  const isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const inApp=/FBAN|FBAV|FB_IAB|Instagram|Line\/|TikTok/i.test(ua);
+  let deferred=null;
+
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+  if(isStandalone){ done.hidden=false; return; }
+  btn.hidden=false;
+
+  window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferred=e; });
+  window.addEventListener('appinstalled',()=>{ deferred=null; btn.hidden=true; help.hidden=true; done.hidden=false; });
+
+  function showHelp(html){ body.innerHTML=html; help.hidden=false; help.scrollIntoView({block:'nearest'}); }
+  document.getElementById('ihClose').onclick=()=>{ help.hidden=true; };
+
+  btn.addEventListener('click',async()=>{
+    if(deferred){
+      deferred.prompt();
+      const r=await deferred.userChoice.catch(()=>null);
+      deferred=null;
+      if(r&&r.outcome==='accepted'){ btn.hidden=true; done.hidden=false; }
+      return;
+    }
+    if(inApp){
+      showHelp(`<ol><li>แตะเมนู <b>⋯</b> มุมขวาบน</li><li>เลือก <b>เปิดในเบราว์เซอร์</b> (Safari หรือ Chrome)</li><li>กดปุ่ม <b>ติดตั้งแอป</b> อีกครั้งในเบราว์เซอร์นั้น</li></ol>`);
+    }else if(isIOS){
+      showHelp(`<ol><li>แตะปุ่ม <b>แชร์</b> <span aria-hidden="true">⬆︎</span> แถบล่างของ Safari</li><li>เลื่อนลงแล้วเลือก <b>เพิ่มไปยังหน้าจอโฮม</b></li><li>แตะ <b>เพิ่ม</b> มุมขวาบน</li></ol>`);
+    }else{
+      showHelp(`<ol><li>เปิดเมนู <b>⋮</b> ของเบราว์เซอร์</li><li>เลือก <b>ติดตั้งแอป</b> หรือ <b>เพิ่มลงในหน้าจอหลัก</b></li></ol><div class="hint">ถ้าไม่เห็นเมนูนี้ ลองเปิดหน้านี้ใน Chrome</div>`);
+    }
+  });
+})();
+</script>
+</body>
+</html>
