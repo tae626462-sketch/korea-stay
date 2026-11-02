@@ -138,11 +138,33 @@ a.go.off{pointer-events:none;opacity:.4}
 .resStatus.err{border-color:var(--cta);color:var(--cta)}
 .resStatus.demo{background:var(--celadon-soft);border-color:var(--celadon)}
 .resList{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr));gap:14px}
-.hcard{display:grid;grid-template-columns:150px minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-width:0}
-@media (max-width:560px){.hcard{grid-template-columns:minmax(0,1fr)}.hcard .ph{aspect-ratio:16/9;max-height:200px}}
-.hcard .ph{background:var(--celadon-soft);min-height:140px;max-width:100%}
+.hcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-width:0}
+.hcard .ph{position:relative;background:var(--celadon-soft);aspect-ratio:16/10;max-width:100%;overflow:hidden}
+.phBtn{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
 .hcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.hcard .noph{display:grid;place-items:center;height:100%;color:var(--muted);font-size:12px}
+.hcard .noph{display:grid;place-items:center;height:100%;color:var(--muted);font-size:13px;gap:6px;text-align:center}
+.phCount{position:absolute;right:10px;bottom:10px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;font-weight:600;background:rgba(10,20,22,.72);color:#fff;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;min-height:34px}
+.phCount svg{width:15px;height:15px}
+.thumbs{display:flex;gap:6px;overflow-x:auto;padding:8px 14px 0;scrollbar-width:thin}
+.thumbs button{flex:0 0 auto;width:72px;height:54px;padding:0;border:0;border-radius:6px;overflow:hidden;cursor:pointer;background:var(--celadon-soft)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.lb{position:fixed;inset:0;z-index:50;background:#070D0F;color:#fff;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 10px) max(12px,env(safe-area-inset-left,0px))}
+.lbTop{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.lbTop .nm{font-family:var(--f-display);font-weight:600;font-size:16px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbTop .ct{font-size:13px;opacity:.75;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lbBtn{font:inherit;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:999px;width:44px;height:44px;font-size:22px;line-height:1;cursor:pointer;flex:0 0 auto}
+.lbStage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0;touch-action:pan-y}
+.lbStage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;min-width:0}
+.lbStage .lbBtn{position:relative;z-index:1}
+@media (max-width:600px){.lbStage .lbBtn{display:none}}
+.lbThumbs{display:flex;gap:6px;overflow-x:auto;justify-content:flex-start}
+.lbThumbs button{flex:0 0 auto;width:60px;height:44px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;cursor:pointer;background:#222;opacity:.6}
+.lbThumbs button[aria-current="true"]{border-color:var(--cta);opacity:1}
+.lbThumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.lbMsg{opacity:.8;font-size:14px}
+.lbStage img{flex:0 1 auto}
+.lbBook{background:var(--cta);color:var(--cta-ink);text-decoration:none;font-weight:600;font-size:14px;border-radius:999px;padding:10px 14px;white-space:nowrap}
 .hb{padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .hb h3{font-family:var(--f-display);font-weight:600;font-size:17px;line-height:1.3;margin:0;overflow-wrap:anywhere}
 .stars{color:var(--warn);letter-spacing:.08em;font-size:14px}
@@ -312,6 +334,23 @@ a.go.off{pointer-events:none;opacity:.4}
     <div class="resStatus" id="resStatus" hidden></div>
     <div class="resList" id="resList"></div>
   </section>
+
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lbName">
+    <div class="lbTop">
+      <div style="min-width:0"><div class="nm" id="lbName"></div><div class="ct" id="lbCount"></div></div>
+      <div style="display:flex;gap:8px;align-items:center;flex:0 0 auto">
+        <a id="lbBook" class="lbBook" href="#" target="_blank" rel="noopener">จองที่พักนี้ ↗</a>
+        <button type="button" class="lbBtn" id="lbClose" aria-label="ปิด">×</button>
+      </div>
+    </div>
+    <div class="lbStage" id="lbStage">
+      <button type="button" class="lbBtn" id="lbPrev" aria-label="รูปก่อนหน้า">‹</button>
+      <img id="lbImg" alt="" referrerpolicy="no-referrer">
+      <div class="lbMsg" id="lbMsg" hidden></div>
+      <button type="button" class="lbBtn" id="lbNext" aria-label="รูปถัดไป">›</button>
+    </div>
+    <div class="lbThumbs" id="lbThumbs"></div>
+  </div>
 </div>
 
 <script>
@@ -648,13 +687,47 @@ async function findDest(){
 function norm(h,n){
   const p=h.property||h, pb=p.priceBreakdown||h.priceBreakdown||{}, gp=pb.grossPrice||{};
   const total=num(gp.value);
-  let photo=(Array.isArray(p.photoUrls)&&p.photoUrls[0])||h.max_photo_url||h.main_photo_url||'';
-  if(photo) photo=photo.replace(/square\d+/,'max500');
+  const photos=uniqPhotos([...(Array.isArray(p.photoUrls)?p.photoUrls:[]),h.max_photo_url,h.main_photo_url]);
+  const photo=photos[0]||'';
   return {id:h.hotel_id||p.id, name:p.name||h.hotel_name||'ไม่ทราบชื่อ', score:num(p.reviewScore??h.review_score),
     word:p.reviewScoreWord||h.review_score_word||'', count:num(p.reviewCount??h.review_nr)||0,
     stars:Math.round(num(p.propertyClass)||num(p.accuratePropertyClass)||num(p.qualityClass)||num(h.class)||0),
     total, cur:gp.currency||K.S.cur, perNight:total!=null&&n?total/n:null, strike:num(pb.strikethroughPrice&&pb.strikethroughPrice.value),
-    photo, lat:num(p.latitude??h.latitude), lng:num(p.longitude??h.longitude), pc:null, pcState:'idle'};
+    photo, photos, phState:'idle', url:typeof (h.url||p.url)==='string'?(h.url||p.url):'',
+    lat:num(p.latitude??h.latitude), lng:num(p.longitude??h.longitude), pc:null, pcState:'idle'};
+}
+
+/* ----- รูปที่พัก ----- */
+function sizePhoto(u,size){ return String(u).replace(/\/(square\d+|max\d+(x\d+)?|max1024x768|max1280x900)\//,'/'+size+'/'); }
+function photoKey(u){ const m=String(u).match(/\/(\d+)\.(jpe?g|png|webp)/i); return m?m[1]:u; }
+function uniqPhotos(list){
+  const out=[], seen=new Set();
+  list.forEach(u=>{ if(typeof u!=='string'||!/^https?:\/\//.test(u)) return; const k=photoKey(u); if(seen.has(k)) return; seen.add(k); out.push(u); });
+  return out;
+}
+function collectPhotoUrls(o,out){
+  out=out||[];
+  if(!o) return out;
+  if(typeof o==='string'){ if(/^https?:\/\/.+\.(jpe?g|png|webp)(\?|$)/i.test(o)) out.push(o); return out; }
+  if(Array.isArray(o)){ o.forEach(x=>collectPhotoUrls(x,out)); return out; }
+  if(typeof o==='object'){
+    const best=o.url_max1280||o.url_1440||o.url_max||o.url_original||o.url_max750||o.url_max300||o.url||o.photo_url;
+    if(typeof best==='string'&&/^https?:\/\//.test(best)){ out.push(best); return out; }
+    Object.values(o).forEach(v=>collectPhotoUrls(v,out));
+  }
+  return out;
+}
+async function loadPhotos(h){
+  if(!cur||cur.demo||h.phState==='loading'||h.phState==='done') return h.photos;
+  h.phState='loading';
+  try{
+    const d=await cached('ph:'+h.id,30*864e5,()=>api('/api/v1/hotels/getHotelPhotos',{hotel_id:h.id}));
+    h.photos=uniqPhotos([...h.photos,...collectPhotoUrls(d&&d.data)]).slice(0,40);
+    if(!h.photo&&h.photos[0]) h.photo=h.photos[0];
+    h.phState='done';
+  }catch(e){ h.phState='error'; }
+  paintCard(h);
+  return h.photos;
 }
 function passes(h){
   const S=K.S;
@@ -729,10 +802,35 @@ async function loadPc(h){
 }
 
 /* ----- แสดงผล ----- */
-function bookingLink(h){
-  const S=K.S, p=new URLSearchParams({ss:h.name,checkin:S.checkin,checkout:S.checkout,group_adults:S.adults,group_children:S.children.length,no_rooms:S.rooms,selected_currency:S.cur,lang:'th'});
+/* ลิงก์ไปหน้าที่พักนั้นโดยตรง พร้อมวันที่ จำนวนคน และอายุเด็ก */
+function stayParams(){
+  const S=K.S, p=new URLSearchParams({checkin:S.checkin,checkout:S.checkout,group_adults:S.adults,group_children:S.children.length,no_rooms:S.rooms,selected_currency:S.cur,lang:'th'});
   S.children.forEach(a=>p.append('age',a));
-  return 'https://www.booking.com/searchresults.html?'+p;
+  return p;
+}
+function bookingLink(h){
+  const p=stayParams();
+  if(h.url&&/booking\.com\/hotel\//.test(h.url)){
+    const u=new URL(h.url.startsWith('http')?h.url:'https://www.booking.com'+h.url);
+    p.forEach((v,k)=>u.searchParams.append(k,v));
+    return u.toString();
+  }
+  if(h.id!=null){ p.set('dest_id',h.id); p.set('dest_type','hotel'); p.set('ss',h.name); return 'https://www.booking.com/searchresults.html?'+p; }
+  p.set('ss',h.name); return 'https://www.booking.com/searchresults.html?'+p;
+}
+function agodaLink(h){
+  const S=K.S, p=new URLSearchParams({checkIn:S.checkin,los:K.nights(),rooms:S.rooms,adults:S.adults,children:S.children.length,priceCur:S.cur,textToSearch:h.name,locale:'th-th'});
+  if(S.children.length) p.set('childages',S.children.join(','));
+  return 'https://www.agoda.com/search?'+p;
+}
+const camIco='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+function photoHtml(h){
+  const id=esc(h.id), n=h.photos.length;
+  if(!h.photo) return `<div class="ph"><div class="noph">${h.phState==='loading'?'<span><span class="spin"></span>กำลังโหลดรูป</span>':'ไม่มีรูปจากที่พัก'}</div>${!cur.demo&&h.phState!=='done'&&h.phState!=='loading'?`<button type="button" class="phCount" data-gal="${id}" data-i="0">${camIco}โหลดรูป</button>`:''}</div>`;
+  const label=h.phState==='done'||cur.demo?`ดูรูปทั้งหมด (${n})`:h.phState==='loading'?'กำลังโหลดรูป…':'ดูรูปทั้งหมด';
+  const thumbs=n>1?`<div class="thumbs">${h.photos.slice(1,9).map((u,i)=>`<button type="button" data-gal="${id}" data-i="${i+1}" aria-label="รูปที่ ${i+2}"><img src="${esc(sizePhoto(u,'square120'))}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join('')}</div>`:'';
+  return `<div class="ph"><button type="button" class="phBtn" data-gal="${id}" data-i="0" aria-label="เปิดรูปของ ${esc(h.name)}"><img src="${esc(sizePhoto(h.photo,'max500'))}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>
+    <button type="button" class="phCount" data-gal="${id}" data-i="0">${camIco}${label}</button></div>${thumbs}`;
 }
 function starsHtml(n){ return n>0?`<span class="stars" aria-label="${n} ดาว">${'★'.repeat(n)}${'☆'.repeat(Math.max(0,5-n))}</span>`:'<span class="stars"><span class="nos">ไม่ระบุดาว</span></span>'; }
 function pcHtml(h){
@@ -755,8 +853,10 @@ function cardHtml(h){
   const score=h.score!=null?`<div class="scoreRow"><span class="badge">${h.score.toFixed(1)}</span><span class="w">${esc(h.word)}</span><span>${h.count?h.count.toLocaleString('th-TH')+' รีวิว':''}</span></div>`
     :'<div class="scoreRow">ยังไม่มีคะแนนรีวิว</div>';
   const map=h.lat!=null?`<a href="https://www.google.com/maps/search/?api=1&query=${h.lat},${h.lng}" target="_blank" rel="noopener">แผนที่ ↗</a>`:'';
-  const acts=cur.demo?'':`<div class="acts"><a class="main" href="${bookingLink(h)}" target="_blank" rel="noopener">ดูห้อง / จอง ↗</a>${map}</div>`;
-  return `<div class="ph">${h.photo?`<img src="${esc(h.photo)}" alt="" loading="lazy">`:'<div class="noph">ไม่มีรูป</div>'}</div>
+  const acts=cur.demo
+    ?`<div class="acts"><span class="hint" style="margin:0">ปุ่ม "จองที่พักนี้" จะพาไปหน้าจองของที่พักจริงเมื่อใช้ข้อมูลจริง</span></div>`
+    :`<div class="acts"><a class="main" href="${esc(bookingLink(h))}" target="_blank" rel="noopener">จองที่พักนี้ · Booking.com ↗</a><a href="${esc(agodaLink(h))}" target="_blank" rel="noopener">เทียบราคา Agoda ↗</a>${map}</div>`;
+  return `${photoHtml(h)}
     <div class="hb"><h3>${esc(h.name)}</h3>${starsHtml(h.stars)}${score}${price}${pcHtml(h)}${acts}</div>`;
 }
 function paintCard(h){ const el=document.querySelector(`[data-hid="${CSS.escape(String(h.id))}"]`); if(el) el.innerHTML=cardHtml(h); }
@@ -770,16 +870,69 @@ function render(){
   if(!list.length) box.innerHTML='<div class="resStatus">ไม่พบที่พักที่ตรงทุกเงื่อนไข ลองลดระดับรีวิว ขยายงบ หรือเลือกย่านใกล้เคียง</div>';
 }
 $('resList').addEventListener('click',e=>{
-  const b=e.target.closest('[data-pc]'); if(!b||!cur||cur.demo) return;
+  if(!cur) return;
+  const g=e.target.closest('[data-gal]');
+  if(g){ const h=cur.hotels.find(x=>String(x.id)===g.dataset.gal); if(h) openGallery(h,+g.dataset.i||0); return; }
+  const b=e.target.closest('[data-pc]'); if(!b||cur.demo) return;
   const h=cur.hotels.find(x=>String(x.id)===b.dataset.pc); if(h) loadPc(h);
 });
+
+/* ----- ดูรูปเต็มจอ ----- */
+const LB={h:null,i:0,last:null};
+function lbShow(){
+  const h=LB.h, P=h.photos, n=P.length;
+  $('lbName').textContent=h.name;
+  $('lbBook').hidden=!!cur.demo; if(!cur.demo) $('lbBook').href=bookingLink(h);
+  if(!n){ $('lbImg').hidden=true; $('lbMsg').hidden=false; $('lbMsg').innerHTML=h.phState==='loading'?'<span class="spin"></span>กำลังโหลดรูป…':'ที่พักนี้ไม่มีรูปในระบบ'; $('lbCount').textContent=''; $('lbThumbs').innerHTML=''; return; }
+  LB.i=(LB.i+n)%n;
+  $('lbMsg').hidden=true; $('lbImg').hidden=false;
+  $('lbImg').src=cur.demo?P[LB.i]:sizePhoto(P[LB.i],'max1024x768');
+  $('lbCount').textContent=`${LB.i+1} / ${n}`;
+  $('lbPrev').disabled=$('lbNext').disabled=n<2;
+  $('lbThumbs').innerHTML=P.map((u,i)=>`<button type="button" data-lbi="${i}" aria-label="รูปที่ ${i+1}" aria-current="${i===LB.i}"><img src="${esc(cur.demo?u:sizePhoto(u,'square120'))}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join('');
+  const act=$('lbThumbs').querySelector('[aria-current="true"]'); if(act) act.scrollIntoView({block:'nearest',inline:'center'});
+}
+async function openGallery(h,i){
+  LB.h=h; LB.i=i; LB.last=document.activeElement;
+  $('lb').hidden=false; document.body.style.overflow='hidden'; $('lbClose').focus();
+  lbShow();
+  if(!cur.demo&&h.phState!=='done'){ await loadPhotos(h); if(LB.h===h&&!$('lb').hidden) lbShow(); }
+}
+function closeGallery(){ $('lb').hidden=true; document.body.style.overflow=''; $('lbImg').src=''; if(LB.last&&LB.last.focus) LB.last.focus(); }
+$('lbClose').onclick=closeGallery;
+$('lbPrev').onclick=()=>{ LB.i--; lbShow(); };
+$('lbNext').onclick=()=>{ LB.i++; lbShow(); };
+$('lbThumbs').addEventListener('click',e=>{ const b=e.target.closest('[data-lbi]'); if(b){ LB.i=+b.dataset.lbi; lbShow(); } });
+document.addEventListener('keydown',e=>{
+  if($('lb').hidden) return;
+  if(e.key==='Escape') closeGallery();
+  else if(e.key==='ArrowLeft'){ LB.i--; lbShow(); }
+  else if(e.key==='ArrowRight'){ LB.i++; lbShow(); }
+});
+(function(){ let x0=null,y0=null; const st=$('lbStage');
+  st.addEventListener('touchstart',e=>{ x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+  st.addEventListener('touchend',e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){ LB.i+=dx<0?1:-1; lbShow(); } x0=null; });
+})();
 document.querySelectorAll('[data-sort]').forEach(b=>b.onclick=()=>{ sortBy=b.dataset.sort; render(); });
 function status(html,cls){ const s=$('resStatus'); if(!html){s.hidden=true;return;} s.className='resStatus '+(cls||''); s.innerHTML=html; s.hidden=false; }
 
 /* ----- ตัวอย่าง (ยังไม่ใส่ key) ----- */
 function demo(){
   const n=4;
-  const mk=(id,name,stars,score,word,count,pn,pc)=>({id,name,stars,score,word,count,perNight:pn,total:pn*n,cur:'THB',strike:null,photo:'',lat:null,lng:null,pc,pcState:'done'});
+  /* ภาพวาดตัวอย่าง (ไม่ใช่รูปที่พักจริง) */
+  const pic=(h1,h2,kind,cap)=>{
+    const scenes={
+      room:`<rect x="0" y="230" width="640" height="170" fill="hsl(${h1},25%,82%)"/><rect x="150" y="190" width="340" height="110" rx="14" fill="#fff"/><rect x="150" y="170" width="340" height="40" rx="10" fill="hsl(${h2},45%,55%)"/><rect x="180" y="150" width="90" height="40" rx="10" fill="#f4f4f4"/><rect x="370" y="150" width="90" height="40" rx="10" fill="#f4f4f4"/><rect x="60" y="60" width="140" height="100" fill="hsl(200,60%,85%)" stroke="#fff" stroke-width="8"/>`,
+      out:`<rect x="0" y="300" width="640" height="100" fill="hsl(${h1},30%,45%)"/><rect x="170" y="140" width="300" height="170" fill="#f3efe8"/><path d="M130 150 Q320 60 510 150 L470 160 Q320 95 170 160 Z" fill="hsl(${h2},30%,28%)"/><rect x="290" y="230" width="60" height="80" fill="hsl(${h2},35%,35%)"/><rect x="200" y="190" width="60" height="50" fill="hsl(40,70%,75%)"/><rect x="380" y="190" width="60" height="50" fill="hsl(40,70%,75%)"/><circle cx="540" cy="70" r="26" fill="hsl(20,75%,60%)"/>`,
+      bath:`<rect x="0" y="0" width="640" height="400" fill="hsl(${h1},20%,90%)"/><rect x="120" y="230" width="400" height="90" rx="40" fill="#fff" stroke="hsl(${h2},20%,70%)" stroke-width="6"/><rect x="420" y="90" width="120" height="120" rx="10" fill="hsl(200,50%,85%)" stroke="#fff" stroke-width="6"/><rect x="160" y="150" width="14" height="80" fill="hsl(${h2},10%,60%)"/>`
+    };
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><rect width="640" height="400" fill="hsl(${h1},35%,70%)"/>${scenes[kind]}<rect x="16" y="352" width="190" height="34" rx="17" fill="rgba(0,0,0,.55)"/><text x="111" y="375" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#fff">ภาพตัวอย่าง · ${cap}</text></svg>`;
+    return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+  };
+  const set=(h1,h2)=>[pic(h1,h2,'out','ภายนอก'),pic(h1,h2,'room','ห้องนอน'),pic(h1,h2,'bath','ห้องน้ำ'),pic(h1+30,h2,'room','ห้องแฟมิลี')];
+  const gal={d1:set(150,20),d2:set(205,230),d3:set(35,190),d4:set(275,330)};
+  const mk=(id,name,stars,score,word,count,pn,pc)=>({id,name,stars,score,word,count,perNight:pn,total:pn*n,cur:'THB',strike:null,photo:gal[id][0],photos:gal[id],phState:'done',url:'',lat:null,lng:null,pc,pcState:'done'});
   cur={demo:true,n,label:'',hotels:[
     mk('d1','(ตัวอย่าง) Hanok Courtyard Stay',3,9.2,'Wonderful',412,2850,{pros:['ทำเลที่ตั้ง ยอดเยี่ยม (9.5)','ความสะอาด ยอดเยี่ยม (9.3)','พนักงาน ยอดเยี่ยม (9.2)'],cons:['สิ่งอำนวยความสะดวก ด้อยสุดเมื่อเทียบด้านอื่น (8.4)'],qp:['Quiet courtyard and a short walk to the palace.'],qc:['Shared bathroom felt a bit small.']}),
     mk('d2','(ตัวอย่าง) City Line Hotel',4,8.7,'Fabulous',2318,3900,{pros:['ทำเลที่ตั้ง ยอดเยี่ยม (9.4)','ความสะอาด ดีมาก (8.9)'],cons:['ความคุ้มค่า ได้คะแนนต่ำ (7.8)'],qp:['Two minutes to the subway, easy airport bus.'],qc:['Rooms are compact for two big suitcases.']}),
@@ -819,7 +972,7 @@ async function search(){
     status(notes.length?notes.join(' · '):'', '');
     if(!notes.length) status('');
     render();
-    sorted(kept).slice(0,5).forEach(h=>loadPc(h));
+    sorted(kept).slice(0,5).forEach(h=>{ loadPc(h); loadPhotos(h); });
   }catch(e){ status(esc(e.message),'err'); }
   finally{ btn.disabled=false; $('searchLbl').textContent='ค้นหาที่พัก'; }
 }
