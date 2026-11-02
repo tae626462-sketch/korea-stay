@@ -1,5 +1,5 @@
 // พักไหนดี เกาหลี — service worker (ใช้งานออฟไลน์ + ทำให้ติดตั้งเป็นแอปได้)
-const CACHE = 'korea-stay-v1';
+const CACHE = 'korea-stay-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

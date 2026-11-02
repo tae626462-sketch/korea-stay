@@ -126,6 +126,49 @@ a.go.off{pointer-events:none;opacity:.4}
 .btn2{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:8px 12px;cursor:pointer;min-height:38px}
 .recent{display:flex;flex-wrap:wrap;gap:6px}
 .recent button{font:inherit;font-size:12.5px;border:1px dashed var(--line);background:none;color:var(--ink);border-radius:8px;padding:5px 9px;cursor:pointer;text-align:left}
+.hdrBtns{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.apiPanel a{color:var(--accent)}
+.apiRow{display:grid;gap:8px;margin:12px 0 6px}
+.searchBtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font:inherit;font-family:var(--f-display);font-weight:700;font-size:18px;background:var(--cta);color:var(--cta-ink);border:0;border-radius:var(--r);padding:14px 18px;min-height:54px;cursor:pointer}
+.searchBtn svg{width:22px;height:22px}
+.searchBtn:disabled{opacity:.6;cursor:progress}
+.results{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);scroll-margin-top:12px}
+.resHead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}
+.resStatus{border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:14px;background:var(--surface);border:1px solid var(--line)}
+.resStatus.err{border-color:var(--cta);color:var(--cta)}
+.resStatus.demo{background:var(--celadon-soft);border-color:var(--celadon)}
+.resList{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr));gap:14px}
+.hcard{display:grid;grid-template-columns:150px minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-width:0}
+@media (max-width:560px){.hcard{grid-template-columns:minmax(0,1fr)}.hcard .ph{aspect-ratio:16/9;max-height:200px}}
+.hcard .ph{background:var(--celadon-soft);min-height:140px;max-width:100%}
+.hcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.hcard .noph{display:grid;place-items:center;height:100%;color:var(--muted);font-size:12px}
+.hb{padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.hb h3{font-family:var(--f-display);font-weight:600;font-size:17px;line-height:1.3;margin:0;overflow-wrap:anywhere}
+.stars{color:var(--warn);letter-spacing:.08em;font-size:14px}
+.stars .nos{color:var(--muted);letter-spacing:0;font-size:12px}
+.scoreRow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.badge{display:inline-grid;place-items:center;min-width:38px;height:30px;padding:0 6px;border-radius:8px 8px 8px 2px;background:var(--accent);color:var(--surface);font-weight:700;font-family:var(--f-display);font-size:15px;font-variant-numeric:tabular-nums}
+.scoreRow .w{color:var(--ink);font-weight:600}
+.priceRow{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.priceRow b{font-family:var(--f-display);font-size:22px;font-variant-numeric:tabular-nums}
+.priceRow s{color:var(--muted);font-size:13px}
+.priceRow span{color:var(--muted);font-size:13px}
+.pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;border-top:1px dashed var(--line);padding-top:10px}
+@media (max-width:420px){.pc{grid-template-columns:minmax(0,1fr)}}
+.pc h4{margin:0 0 4px;font-size:12px;letter-spacing:.04em;font-weight:600}
+.pc .pro h4{color:var(--good)}.pc .con h4{color:var(--cta)}
+.pc ul{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:13px}
+.pc .pro li::before{content:"✓ ";color:var(--good);font-weight:700}
+.pc .con li::before{content:"– ";color:var(--cta);font-weight:700}
+.pc q{display:block;color:var(--muted);font-size:12.5px;font-style:italic;quotes:"“" "”"}
+.pc .wide{grid-column:1/-1}
+.loadPc{font:inherit;font-size:13px;border:1px dashed var(--celadon);background:none;color:var(--ink);border-radius:8px;padding:8px 10px;cursor:pointer;grid-column:1/-1}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.acts a{font-size:13.5px;text-decoration:none;border-radius:8px;padding:7px 12px;border:1px solid var(--line);color:var(--ink)}
+.acts a.main{background:var(--cta);border-color:var(--cta);color:var(--cta-ink);font-weight:600}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--celadon);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
 .installBtn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:15px;background:var(--cta);color:var(--cta-ink);border:0;border-radius:999px;padding:10px 18px;min-height:44px;cursor:pointer}
 .installBtn svg{width:18px;height:18px}
 .installed{font-size:13px;color:var(--good);font-weight:600}
@@ -144,7 +187,8 @@ a.go.off{pointer-events:none;opacity:.4}
       <h1>พักไหนดี เกาหลี<span class="ko">어디서 잘까?</span></h1>
       <p class="lede">เลือกวัน จำนวนคน งบ ย่าน และระดับรีวิว แล้วกดค้นในเว็บจองที่ใส่ตัวกรองให้แล้ว</p>
     </div>
-    <div id="installBox">
+    <div id="installBox" class="hdrBtns">
+      <button type="button" class="btn2" id="apiBtn">⚙ ตั้งค่าข้อมูลจริง</button>
       <button type="button" class="installBtn" id="installBtn" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
         ติดตั้งแอป
@@ -156,6 +200,21 @@ a.go.off{pointer-events:none;opacity:.4}
     <button type="button" class="x" id="ihClose" aria-label="ปิด">×</button>
     <b id="ihTitle">ติดตั้งลงหน้าจอโฮม</b>
     <div id="ihBody"></div>
+  </div>
+  <div class="ihelp apiPanel" id="apiPanel" hidden role="dialog" aria-labelledby="apiTitle">
+    <button type="button" class="x" id="apiClose" aria-label="ปิด">×</button>
+    <b id="apiTitle">เชื่อมข้อมูลที่พักจริง (Booking.com API ผ่าน RapidAPI)</b>
+    <ol>
+      <li>สมัครฟรีที่ <a href="https://rapidapi.com/DataCrawler/api/booking-com15" target="_blank" rel="noopener">rapidapi.com/DataCrawler/api/booking-com15</a></li>
+      <li>กดแท็บ <b>Pricing</b> แล้ว Subscribe แผน <b>Basic (ฟรี)</b></li>
+      <li>คัดลอกค่า <b>X-RapidAPI-Key</b> มาวางด้านล่าง แล้วกด ทดสอบ</li>
+    </ol>
+    <div class="apiRow">
+      <label class="lbl" for="apiKey" style="margin:0">API key</label>
+      <input type="text" id="apiKey" autocomplete="off" spellcheck="false" placeholder="วาง X-RapidAPI-Key ที่นี่">
+      <div class="tools"><button type="button" class="btn2" id="apiTest">บันทึก + ทดสอบ</button><button type="button" class="btn2" id="apiSave">บันทึก</button><span id="apiMsg" class="hint" style="margin:0;align-self:center"></span></div>
+    </div>
+    <div class="hint">key เก็บไว้ในเครื่องนี้เท่านั้น ถ้าแชร์ลิงก์แอปให้คนอื่น เขาต้องใส่ key ของตัวเอง แผนฟรีมีโควตาค้นต่อเดือนจำกัด แอปจึงจำผลค้นหาไว้ 1 ชั่วโมงเพื่อประหยัดโควตา</div>
   </div>
 
   <div class="layout">
@@ -222,6 +281,10 @@ a.go.off{pointer-events:none;opacity:.4}
     <aside>
       <div class="panel">
         <div class="sum" id="sum"></div>
+        <button type="button" class="searchBtn" id="searchBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span id="searchLbl">ค้นหาที่พัก</span>
+        </button>
         <div class="sites" id="sites"></div>
         <div class="tools">
           <button type="button" class="btn2" id="copyBtn">คัดลอกสรุปทริป</button>
@@ -232,6 +295,23 @@ a.go.off{pointer-events:none;opacity:.4}
       </div>
     </aside>
   </div>
+
+  <section class="results" id="results" aria-labelledby="resTitle">
+    <div class="resHead">
+      <div style="min-width:0">
+        <h2 id="resTitle" style="margin:0">ผลการค้นหา</h2>
+        <div class="hint" id="resSub" style="margin-top:2px"></div>
+      </div>
+      <div class="seg" id="resSort" role="group" aria-label="เรียงลำดับ">
+        <button type="button" class="chip" data-sort="rec">แนะนำ</button>
+        <button type="button" class="chip" data-sort="price">ราคาต่ำสุด</button>
+        <button type="button" class="chip" data-sort="score">คะแนนสูงสุด</button>
+        <button type="button" class="chip" data-sort="stars">ดาวมากสุด</button>
+      </div>
+    </div>
+    <div class="resStatus" id="resStatus" hidden></div>
+    <div class="resList" id="resList"></div>
+  </section>
 </div>
 
 <script>
@@ -498,7 +578,256 @@ function renderRecent(){
 }
 
 function renderAll(){ syncDates(); renderGuests(); renderPrice(); renderReview(); renderCities(); renderStyles(); renderAreas(); renderRecent(); update(); }
+window.KS={S,query,curCity,curArea,nights,thDate,fmt};
 renderAll();
+})();
+</script>
+<script>
+/* ---------- ค้นหาที่พักจริง (Booking.com API ผ่าน RapidAPI) ---------- */
+(function(){
+const K=window.KS, $=id=>document.getElementById(id);
+const HOST='booking-com15.p.rapidapi.com', KEYK='korea-stay-rapidapi-key';
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let apiKey=store.get(KEYK,'');
+let cur=null;            // {hotels, label, n, demo, cityFallback}
+let sortBy='rec';
+
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>{const n=typeof v==='string'?parseFloat(v):v;return typeof n==='number'&&isFinite(n)?n:null};
+const sym=c=>c==='KRW'?'₩':c==='THB'?'฿':(c?c+' ':'');
+const money=v=>Math.round(v).toLocaleString('th-TH');
+
+/* ----- ตั้งค่า API ----- */
+$('apiBtn').onclick=()=>{ const p=$('apiPanel'); p.hidden=!p.hidden; $('apiKey').value=apiKey; if(!p.hidden)p.scrollIntoView({block:'nearest'}); };
+$('apiClose').onclick=()=>{ $('apiPanel').hidden=true; };
+$('apiSave').onclick=()=>{ apiKey=$('apiKey').value.trim(); store.set(KEYK,apiKey); $('apiMsg').textContent=apiKey?'บันทึกแล้ว':'ลบ key แล้ว'; };
+$('apiTest').onclick=async()=>{
+  apiKey=$('apiKey').value.trim(); store.set(KEYK,apiKey);
+  if(!apiKey){ $('apiMsg').textContent='ยังไม่ได้วาง key'; return; }
+  $('apiMsg').innerHTML='<span class="spin"></span>กำลังทดสอบ';
+  try{ const d=await api('/api/v1/hotels/searchDestination',{query:'Seoul'});
+    $('apiMsg').textContent=(d&&Array.isArray(d.data)&&d.data.length)?'✓ ใช้งานได้ กดค้นหาที่พักได้เลย':'เชื่อมต่อได้ แต่ระบบไม่ส่งข้อมูลกลับมา';
+  }catch(e){ $('apiMsg').textContent='✗ '+e.message; }
+};
+
+async function api(path,params){
+  if(!apiKey) throw new Error('ยังไม่ได้ใส่ API key');
+  let res;
+  try{ res=await fetch('https://'+HOST+path+'?'+new URLSearchParams(params),{headers:{'x-rapidapi-key':apiKey,'x-rapidapi-host':HOST}}); }
+  catch(e){ throw new Error('เชื่อมต่อไม่ได้ ตรวจอินเทอร์เน็ตแล้วลองใหม่'); }
+  if(res.status===401||res.status===403) throw new Error('API key ไม่ถูกต้อง หรือยังไม่ได้ Subscribe แผน Basic (ฟรี) ใน RapidAPI');
+  if(res.status===429) throw new Error('โควตาของแผนฟรีหมด หรือค้นถี่เกินไป รอสักครู่แล้วลองใหม่');
+  if(!res.ok) throw new Error('ระบบข้อมูลที่พักตอบกลับผิดพลาด (รหัส '+res.status+')');
+  const j=await res.json();
+  if(j&&j.status===false&&j.message) throw new Error(typeof j.message==='string'?j.message:'ระบบข้อมูลที่พักแจ้งข้อผิดพลาด');
+  return j;
+}
+async function cached(key,ttl,fn){
+  const k='ks-c:'+key, hit=store.get(k,null);
+  if(hit&&Date.now()-hit.t<ttl) return hit.v;
+  const v=await fn(); store.set(k,{t:Date.now(),v}); return v;
+}
+
+/* ----- หาจุดหมาย ----- */
+async function findDest(){
+  const S=K.S, c=K.curCity(), a=K.curArea(), custom=S.custom.trim();
+  const base=custom||a.en.split(',')[0];
+  const tries=[base+' '+c.en, base, c.en];
+  for(let i=0;i<tries.length;i++){
+    const q=tries[i];
+    const d=await cached('dest:'+q.toLowerCase(),30*864e5,()=>api('/api/v1/hotels/searchDestination',{query:q}));
+    const list=(d&&Array.isArray(d.data))?d.data:[];
+    const pick=list.find(x=>x&&x.dest_id&&(String(x.cc1||'').toLowerCase()==='kr'||/korea/i.test((x.country||'')+' '+(x.label||''))));
+    if(pick) return {id:pick.dest_id,type:pick.search_type||pick.dest_type||'city',label:pick.label||pick.name||q,cityFallback:i===2};
+  }
+  throw new Error('ไม่พบย่านหรือสถานที่นี้ ลองพิมพ์ชื่อเป็นภาษาอังกฤษในช่อง "ระบุย่านเอง"');
+}
+
+/* ----- แปลงข้อมูลโรงแรม ----- */
+function norm(h,n){
+  const p=h.property||h, pb=p.priceBreakdown||h.priceBreakdown||{}, gp=pb.grossPrice||{};
+  const total=num(gp.value);
+  let photo=(Array.isArray(p.photoUrls)&&p.photoUrls[0])||h.max_photo_url||h.main_photo_url||'';
+  if(photo) photo=photo.replace(/square\d+/,'max500');
+  return {id:h.hotel_id||p.id, name:p.name||h.hotel_name||'ไม่ทราบชื่อ', score:num(p.reviewScore??h.review_score),
+    word:p.reviewScoreWord||h.review_score_word||'', count:num(p.reviewCount??h.review_nr)||0,
+    stars:Math.round(num(p.propertyClass)||num(p.accuratePropertyClass)||num(p.qualityClass)||num(h.class)||0),
+    total, cur:gp.currency||K.S.cur, perNight:total!=null&&n?total/n:null, strike:num(pb.strikethroughPrice&&pb.strikethroughPrice.value),
+    photo, lat:num(p.latitude??h.latitude), lng:num(p.longitude??h.longitude), pc:null, pcState:'idle'};
+}
+function passes(h){
+  const S=K.S;
+  if(S.review && !(h.score>=S.review)) return false;
+  if(!S.anyPrice && h.perNight!=null && h.cur===S.cur){
+    if(S.min && h.perNight<S.min) return false;
+    if(S.max!=null && h.perNight>S.max) return false;
+  }
+  return true;
+}
+const recScore=h=>(h.score||0)+Math.min(1,Math.log10((h.count||0)+1)/4)+(h.stars||0)*0.05;
+function sorted(list){
+  const L=[...list];
+  if(sortBy==='price') L.sort((a,b)=>(a.perNight??1e12)-(b.perNight??1e12));
+  else if(sortBy==='score') L.sort((a,b)=>(b.score||0)-(a.score||0)||(b.count-a.count));
+  else if(sortBy==='stars') L.sort((a,b)=>(b.stars||0)-(a.stars||0)||(b.score||0)-(a.score||0));
+  else L.sort((a,b)=>recScore(b)-recScore(a));
+  return L;
+}
+
+/* ----- ข้อดี / ข้อเสีย ----- */
+const CAT=[[/clean/i,'ความสะอาด'],[/staff/i,'พนักงาน'],[/locat/i,'ทำเลที่ตั้ง'],[/comfort/i,'ความสบาย'],
+  [/value|money/i,'ความคุ้มค่า'],[/facilit|service/i,'สิ่งอำนวยความสะดวก'],[/wifi|wi-fi|internet/i,'Wi-Fi ฟรี']];
+function findCats(o,out){
+  out=out||[];
+  if(!o||typeof o!=='object') return out;
+  if(Array.isArray(o)){ o.forEach(x=>findCats(x,out)); return out; }
+  const label=[o.question,o.localized_question,o.name,o.title].filter(x=>typeof x==='string').join(' ');
+  const sc=num(o.score??o.average_score??o.value);
+  if(label&&sc!=null&&sc>0&&sc<=10){
+    const m=CAT.find(([re])=>re.test(label));
+    if(m&&!out.some(x=>x.th===m[1])) out.push({th:m[1],score:sc});
+  }
+  Object.values(o).forEach(v=>{ if(v&&typeof v==='object') findCats(v,out); });
+  return out;
+}
+const TRIVIAL=/^(nothing|none|no|n\/a|na|-|\.|nothing\.?|all good|everything|no complaints?)$/i;
+function cleanTxt(s){ s=String(s||'').replace(/\s+/g,' ').trim(); return s.length<4||TRIVIAL.test(s)?'':s; }
+function pickQuotes(arr){
+  const ok=arr.filter(s=>s.length>=15&&s.length<=170);
+  return (ok.length?ok:arr.map(s=>s.slice(0,167)+(s.length>167?'…':''))).slice(0,2);
+}
+function findReviewList(d){
+  const dd=d&&d.data;
+  if(Array.isArray(dd)) return dd;
+  if(dd&&Array.isArray(dd.result)) return dd.result;
+  if(dd&&Array.isArray(dd.reviews)) return dd.reviews;
+  return [];
+}
+async function loadPc(h){
+  if(h.pcState==='loading'||h.pcState==='done') return;
+  h.pcState='loading'; paintCard(h);
+  try{
+    const [sc,rv]=await Promise.all([
+      cached('rs:'+h.id,7*864e5,()=>api('/api/v1/hotels/getHotelReviewScores',{hotel_id:h.id,languagecode:'en-us'})).catch(()=>null),
+      cached('rv:'+h.id,7*864e5,()=>api('/api/v1/hotels/getHotelReviews',{hotel_id:h.id,sort_option_id:'sort_most_relevant',page_number:1,languagecode:'en-us'})).catch(()=>null)
+    ]);
+    if(!sc&&!rv) throw new Error('x');
+    const cats=findCats(sc&&sc.data).sort((a,b)=>b.score-a.score);
+    const pros=[], cons=[];
+    const hi=cats.filter(c=>c.score>=8.5).slice(0,3);
+    (hi.length?hi:cats.slice(0,1)).forEach(c=>pros.push(`${c.th}${c.score>=9?' ยอดเยี่ยม':c.score>=8.5?' ดีมาก':' เด่นสุดของที่นี่'} (${c.score.toFixed(1)})`));
+    const lo=[...cats].reverse().filter(c=>c.score<8).slice(0,2);
+    if(lo.length) lo.forEach(c=>cons.push(`${c.th} ได้คะแนนต่ำ (${c.score.toFixed(1)})`));
+    else if(cats.length>1){ const c=cats[cats.length-1]; cons.push(`${c.th} ด้อยสุดเมื่อเทียบด้านอื่น (${c.score.toFixed(1)})`); }
+    const list=findReviewList(rv);
+    const qp=pickQuotes(list.map(r=>cleanTxt(r.pros??r.positive??r.pros_translated)).filter(Boolean));
+    const qc=pickQuotes(list.map(r=>cleanTxt(r.cons??r.negative??r.cons_translated)).filter(Boolean));
+    h.pc={pros,cons,qp,qc}; h.pcState='done';
+  }catch(e){ h.pcState='error'; }
+  paintCard(h);
+}
+
+/* ----- แสดงผล ----- */
+function bookingLink(h){
+  const S=K.S, p=new URLSearchParams({ss:h.name,checkin:S.checkin,checkout:S.checkout,group_adults:S.adults,group_children:S.children.length,no_rooms:S.rooms,selected_currency:S.cur,lang:'th'});
+  S.children.forEach(a=>p.append('age',a));
+  return 'https://www.booking.com/searchresults.html?'+p;
+}
+function starsHtml(n){ return n>0?`<span class="stars" aria-label="${n} ดาว">${'★'.repeat(n)}${'☆'.repeat(Math.max(0,5-n))}</span>`:'<span class="stars"><span class="nos">ไม่ระบุดาว</span></span>'; }
+function pcHtml(h){
+  if(h.pcState==='loading') return `<div class="pc"><div class="wide hint" style="margin:0"><span class="spin"></span>กำลังอ่านรีวิว…</div></div>`;
+  if(h.pcState==='error') return `<div class="pc"><button type="button" class="loadPc" data-pc="${esc(h.id)}">โหลดข้อดี/ข้อเสียไม่สำเร็จ แตะเพื่อลองใหม่</button></div>`;
+  if(h.pcState!=='done') return `<div class="pc"><button type="button" class="loadPc" data-pc="${esc(h.id)}">ดูข้อดี / ข้อเสียจากรีวิว</button></div>`;
+  const {pros,cons,qp,qc}=h.pc;
+  const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join('');
+  const q=a=>a.map(x=>`<q lang="en">${esc(x)}</q>`).join('');
+  if(!pros.length&&!cons.length&&!qp.length&&!qc.length) return `<div class="pc"><div class="wide hint" style="margin:0">ที่พักนี้ยังมีรีวิวไม่พอให้สรุป</div></div>`;
+  return `<div class="pc">
+    <div class="pro"><h4>ข้อดี</h4><ul>${li(pros)||'<li>—</li>'}</ul>${q(qp)}</div>
+    <div class="con"><h4>ข้อเสีย</h4><ul>${li(cons)||'<li>ยังไม่พบจุดด้อยชัดเจน</li>'}</ul>${q(qc)}</div>
+  </div>`;
+}
+function cardHtml(h){
+  const n=cur.n, s=sym(h.cur);
+  const price=h.perNight!=null?`<div class="priceRow"><b>${s}${money(h.perNight)}</b><span>/คืน</span>${h.strike?`<s>${s}${money(h.strike/n)}</s>`:''}<span>· รวม ${n} คืน ${s}${money(h.total)}</span></div>`
+    :'<div class="priceRow"><span>ไม่มีราคาสำหรับวันที่เลือก</span></div>';
+  const score=h.score!=null?`<div class="scoreRow"><span class="badge">${h.score.toFixed(1)}</span><span class="w">${esc(h.word)}</span><span>${h.count?h.count.toLocaleString('th-TH')+' รีวิว':''}</span></div>`
+    :'<div class="scoreRow">ยังไม่มีคะแนนรีวิว</div>';
+  const map=h.lat!=null?`<a href="https://www.google.com/maps/search/?api=1&query=${h.lat},${h.lng}" target="_blank" rel="noopener">แผนที่ ↗</a>`:'';
+  const acts=cur.demo?'':`<div class="acts"><a class="main" href="${bookingLink(h)}" target="_blank" rel="noopener">ดูห้อง / จอง ↗</a>${map}</div>`;
+  return `<div class="ph">${h.photo?`<img src="${esc(h.photo)}" alt="" loading="lazy">`:'<div class="noph">ไม่มีรูป</div>'}</div>
+    <div class="hb"><h3>${esc(h.name)}</h3>${starsHtml(h.stars)}${score}${price}${pcHtml(h)}${acts}</div>`;
+}
+function paintCard(h){ const el=document.querySelector(`[data-hid="${CSS.escape(String(h.id))}"]`); if(el) el.innerHTML=cardHtml(h); }
+function render(){
+  document.querySelectorAll('[data-sort]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.sort===sortBy));
+  const box=$('resList'); box.innerHTML='';
+  if(!cur) return;
+  const list=sorted(cur.hotels);
+  $('resSub').textContent=cur.demo?'ตัวอย่างหน้าตาผลลัพธ์':`พบ ${list.length} ที่พัก · ${cur.label} · ${K.thDate(K.S.checkin)} – ${K.thDate(K.S.checkout)} (${cur.n} คืน)`;
+  list.forEach(h=>{ const a=document.createElement('article'); a.className='hcard'; a.dataset.hid=h.id; a.innerHTML=cardHtml(h); box.appendChild(a); });
+  if(!list.length) box.innerHTML='<div class="resStatus">ไม่พบที่พักที่ตรงทุกเงื่อนไข ลองลดระดับรีวิว ขยายงบ หรือเลือกย่านใกล้เคียง</div>';
+}
+$('resList').addEventListener('click',e=>{
+  const b=e.target.closest('[data-pc]'); if(!b||!cur||cur.demo) return;
+  const h=cur.hotels.find(x=>String(x.id)===b.dataset.pc); if(h) loadPc(h);
+});
+document.querySelectorAll('[data-sort]').forEach(b=>b.onclick=()=>{ sortBy=b.dataset.sort; render(); });
+function status(html,cls){ const s=$('resStatus'); if(!html){s.hidden=true;return;} s.className='resStatus '+(cls||''); s.innerHTML=html; s.hidden=false; }
+
+/* ----- ตัวอย่าง (ยังไม่ใส่ key) ----- */
+function demo(){
+  const n=4;
+  const mk=(id,name,stars,score,word,count,pn,pc)=>({id,name,stars,score,word,count,perNight:pn,total:pn*n,cur:'THB',strike:null,photo:'',lat:null,lng:null,pc,pcState:'done'});
+  cur={demo:true,n,label:'',hotels:[
+    mk('d1','(ตัวอย่าง) Hanok Courtyard Stay',3,9.2,'Wonderful',412,2850,{pros:['ทำเลที่ตั้ง ยอดเยี่ยม (9.5)','ความสะอาด ยอดเยี่ยม (9.3)','พนักงาน ยอดเยี่ยม (9.2)'],cons:['สิ่งอำนวยความสะดวก ด้อยสุดเมื่อเทียบด้านอื่น (8.4)'],qp:['Quiet courtyard and a short walk to the palace.'],qc:['Shared bathroom felt a bit small.']}),
+    mk('d2','(ตัวอย่าง) City Line Hotel',4,8.7,'Fabulous',2318,3900,{pros:['ทำเลที่ตั้ง ยอดเยี่ยม (9.4)','ความสะอาด ดีมาก (8.9)'],cons:['ความคุ้มค่า ได้คะแนนต่ำ (7.8)'],qp:['Two minutes to the subway, easy airport bus.'],qc:['Rooms are compact for two big suitcases.']}),
+    mk('d3','(ตัวอย่าง) Riverside Family Residence',4,8.9,'Fabulous',964,5400,{pros:['ความสบาย ดีมาก (9.0)','ความสะอาด ดีมาก (8.9)'],cons:['ทำเลที่ตั้ง ได้คะแนนต่ำ (7.6)'],qp:['Kitchen and washing machine were great with kids.'],qc:['Need a taxi or bus to reach the main sights.']}),
+    mk('d4','(ตัวอย่าง) Budget Pod Guesthouse',0,8.1,'Very good',688,1250,{pros:['ความคุ้มค่า ยอดเยี่ยม (9.1)'],cons:['ความสบาย ได้คะแนนต่ำ (7.2)','สิ่งอำนวยความสะดวก ได้คะแนนต่ำ (7.4)'],qp:['Cheap and clean, friendly host.'],qc:['Thin walls, noisy at night.']})
+  ]};
+  status('นี่คือ<b>ตัวอย่าง</b>หน้าตาผลลัพธ์ ชื่อและตัวเลขเป็นข้อมูลสมมุติ กด <b>⚙ ตั้งค่าข้อมูลจริง</b> ใส่ API key (ฟรี) แล้วกดค้นหา จะได้ที่พักจริง ราคาจริง และรีวิวจริง','demo');
+  render();
+}
+
+/* ----- ค้นหา ----- */
+async function search(){
+  const S=K.S, n=K.nights();
+  $('results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  if(!(n>=1)){ status('เลือกวันเช็กเอาต์ให้อยู่หลังวันเช็กอินก่อน','err'); return; }
+  if(!apiKey){ demo(); $('apiPanel').hidden=false; return; }
+  const btn=$('searchBtn'); btn.disabled=true; $('searchLbl').textContent='กำลังค้นหา…';
+  status('<span class="spin"></span>กำลังค้นหาที่พัก ราคา และคะแนนรีวิว…');
+  try{
+    const dest=await findDest();
+    const base={dest_id:dest.id,search_type:String(dest.type).toUpperCase(),arrival_date:S.checkin,departure_date:S.checkout,
+      adults:S.adults,room_qty:S.rooms,units:'metric',temperature_unit:'c',languagecode:'en-us',currency_code:S.cur};
+    if(S.children.length) base.children_age=S.children.join(',');
+    let all=[], seen=new Set();
+    for(let page=1;page<=2;page++){
+      const p={...base,page_number:page};
+      const d=await cached('h:'+JSON.stringify(p),3600e3,()=>api('/api/v1/hotels/searchHotels',p));
+      const hs=(d&&d.data&&Array.isArray(d.data.hotels))?d.data.hotels:[];
+      hs.map(h=>norm(h,n)).forEach(h=>{ if(h.id!=null&&!seen.has(h.id)){ seen.add(h.id); all.push(h); } });
+      if(all.filter(passes).length>=8||hs.length<15) break;
+    }
+    const kept=all.filter(passes);
+    cur={demo:false,n,label:dest.label,hotels:kept};
+    const notes=[];
+    if(dest.cityFallback) notes.push('ไม่พบย่านที่ระบุตรง ๆ จึงแสดงที่พักทั้งเมือง');
+    if(all.length&&kept.length<all.length) notes.push(`ซ่อน ${all.length-kept.length} ที่พักที่ไม่ตรงงบหรือระดับรีวิว`);
+    status(notes.length?notes.join(' · '):'', '');
+    if(!notes.length) status('');
+    render();
+    sorted(kept).slice(0,5).forEach(h=>loadPc(h));
+  }catch(e){ status(esc(e.message),'err'); }
+  finally{ btn.disabled=false; $('searchLbl').textContent='ค้นหาที่พัก'; }
+}
+$('searchBtn').onclick=search;
+
+/* หน้าแรก: ถ้ามี key ให้ว่างไว้รอกดค้นหา ถ้ายังไม่มี แสดงตัวอย่าง */
+if(apiKey){ cur=null; status('กด <b>ค้นหาที่พัก</b> เพื่อดูที่พักจริงตามเงื่อนไขที่เลือก'); $('resSub').textContent=''; render(); }
+else demo();
 })();
 </script>
 <script>
